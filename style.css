@@ -1,0 +1,463 @@
+/* ═══════════════════════════════════════════
+   LITHOTHÉRAPIE — style.css
+   ═══════════════════════════════════════════ */
+
+/* ── Variables ── */
+:root {
+  --bg:          #fafaf8;
+  --surface:     #ffffff;
+  --surface2:    #f4f3ef;
+  --border:      rgba(0,0,0,0.09);
+  --border2:     rgba(0,0,0,0.17);
+  --text:        #1a1a18;
+  --text2:       #5a5a56;
+  --text3:       #8a8a84;
+  --accent:      #7F77DD;
+  --accent-bg:   #EEEDFE;
+  --accent-text: #3C3489;
+  --radius:      12px;
+  --radius-sm:   8px;
+  --shadow:      0 4px 20px rgba(0,0,0,0.07);
+  --shadow-lg:   0 16px 50px rgba(0,0,0,0.18);
+  --transition:  0.18s ease;
+}
+
+/* ── Reset ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ════════════════════════════════════════════
+   HEADER
+   ════════════════════════════════════════════ */
+.site-header {
+  background: var(--surface);
+  border-bottom: 0.5px solid var(--border);
+  padding: 1rem 1.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.header-left h1 {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.header-left .tagline {
+  font-size: 12px;
+  color: var(--text3);
+  margin-top: 1px;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: 0.5px solid var(--border2);
+  border-radius: var(--radius-sm);
+  background: var(--surface2);
+  padding: 0 10px;
+  flex: 1;
+  max-width: 340px;
+  min-width: 180px;
+}
+
+.search-box svg {
+  color: var(--text3);
+  flex-shrink: 0;
+}
+
+.search-box input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 8px 0;
+  font-size: 14px;
+  color: var(--text);
+  outline: none;
+}
+
+.search-box input::placeholder {
+  color: var(--text3);
+}
+
+/* ════════════════════════════════════════════
+   MAIN LAYOUT
+   ════════════════════════════════════════════ */
+.main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 3rem;
+}
+
+/* ════════════════════════════════════════════
+   FILTERS
+   ════════════════════════════════════════════ */
+.filters {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.filter-btn {
+  padding: 5px 15px;
+  border: 0.5px solid var(--border2);
+  border-radius: 20px;
+  font-size: 13px;
+  cursor: pointer;
+  background: var(--surface);
+  color: var(--text2);
+  transition: background var(--transition), border-color var(--transition),
+              color var(--transition);
+  white-space: nowrap;
+}
+
+.filter-btn:hover {
+  background: var(--surface2);
+}
+
+.filter-btn.active {
+  background: var(--accent-bg);
+  border-color: #AFA9EC;
+  color: var(--accent-text);
+  font-weight: 500;
+}
+
+/* ════════════════════════════════════════════
+   GRID
+   ════════════════════════════════════════════ */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+  gap: 14px;
+}
+
+/* ════════════════════════════════════════════
+   CARD
+   ════════════════════════════════════════════ */
+.card {
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  cursor: pointer;
+  transition: box-shadow var(--transition), border-color var(--transition),
+              transform var(--transition);
+}
+
+.card:hover {
+  border-color: var(--border2);
+  box-shadow: var(--shadow);
+  transform: translateY(-2px);
+}
+
+.card-img {
+  width: 100%;
+  height: 120px;
+  overflow: hidden;
+  background: var(--surface2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.card:hover .card-img img {
+  transform: scale(1.05);
+}
+
+.card-img .placeholder {
+  font-size: 46px;
+  user-select: none;
+}
+
+.card-body {
+  padding: 10px 12px 12px;
+}
+
+.card-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 5px;
+  line-height: 1.3;
+}
+
+.card-signs {
+  font-size: 11px;
+  color: var(--text3);
+  line-height: 1.7;
+}
+
+/* ════════════════════════════════════════════
+   NO RESULTS
+   ════════════════════════════════════════════ */
+.nores {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 4rem 1rem;
+  color: var(--text3);
+  font-size: 15px;
+}
+
+/* ════════════════════════════════════════════
+   MODAL OVERLAY
+   ════════════════════════════════════════════ */
+.overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.48);
+  z-index: 200;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 1rem;
+  overflow-y: auto;
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+}
+
+.overlay.open {
+  display: flex;
+}
+
+/* ════════════════════════════════════════════
+   MODAL
+   ════════════════════════════════════════════ */
+.modal {
+  background: var(--surface);
+  border-radius: var(--radius);
+  border: 0.5px solid var(--border);
+  max-width: 520px;
+  width: 100%;
+  margin: auto;
+  box-shadow: var(--shadow-lg);
+  animation: modalIn 0.2s ease;
+}
+
+@keyframes modalIn {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.modal-img {
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  border-radius: var(--radius) var(--radius) 0 0;
+  background: var(--surface2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.modal-img .placeholder {
+  font-size: 72px;
+  user-select: none;
+}
+
+.modal-hd {
+  padding: 1.1rem 1.4rem 0.9rem;
+  border-bottom: 0.5px solid var(--border);
+}
+
+.modal-hd h2 {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 3px;
+}
+
+.modal-hd .origin {
+  font-size: 12px;
+  color: var(--text3);
+}
+
+.modal-bd {
+  padding: 1.1rem 1.4rem;
+}
+
+.section {
+  margin-bottom: 1.1rem;
+}
+
+.section:last-of-type {
+  margin-bottom: 0;
+}
+
+.section-title {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text3);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin-bottom: 8px;
+}
+
+.desc {
+  font-size: 13px;
+  line-height: 1.75;
+  color: var(--text);
+}
+
+/* Vertus tags */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag {
+  font-size: 12px;
+  padding: 4px 12px;
+  border-radius: 12px;
+}
+
+/* Chakras */
+.chakra-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.chakra-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.chakra-name {
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* Signs */
+.sign-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.sign-tag {
+  font-size: 12px;
+  padding: 4px 12px;
+  border-radius: 12px;
+  background: var(--surface2);
+  color: var(--text2);
+}
+
+/* Purification */
+.purif-text {
+  font-size: 13px;
+  color: var(--text2);
+}
+
+/* Close button */
+.close-btn {
+  display: block;
+  width: 100%;
+  margin-top: 1.1rem;
+  padding: 10px;
+  border: 0.5px solid var(--border2);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text2);
+  font-size: 14px;
+  cursor: pointer;
+  transition: background var(--transition);
+}
+
+.close-btn:hover {
+  background: var(--surface2);
+}
+
+/* ════════════════════════════════════════════
+   FOOTER
+   ════════════════════════════════════════════ */
+.site-footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  font-size: 12px;
+  color: var(--text3);
+  border-top: 0.5px solid var(--border);
+  margin-top: 1rem;
+}
+
+.site-footer .disclaimer {
+  margin-top: 4px;
+  font-size: 11px;
+  opacity: 0.7;
+}
+
+/* ════════════════════════════════════════════
+   RESPONSIVE
+   ════════════════════════════════════════════ */
+@media (max-width: 640px) {
+  .site-header {
+    padding: 0.75rem 1rem;
+    gap: 0.75rem;
+  }
+
+  .header-left h1 {
+    font-size: 18px;
+  }
+
+  .search-box {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(145px, 1fr));
+    gap: 10px;
+  }
+
+  .modal-img {
+    height: 170px;
+  }
+
+  .modal-hd h2 {
+    font-size: 19px;
+  }
+}
+
+@media (max-width: 380px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
